@@ -1,4 +1,0 @@
-git-notes
-=========
-
-test ok
