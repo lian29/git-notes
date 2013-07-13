@@ -92,8 +92,23 @@ git revert head
 1.使用中的branch指向位置會在新commit出現後自動移動，repository預設branch稱為master
 (git會使用head指標紀錄目前的branch，可隨時新增與切換和刪除，分岔的branch可透過merge和rebase)
 
-    tag是不會動的:對特定的commit加上標記，指向位置不會隨著新commit出現更動，用於標記釋出版本或里程碑
+2.tag是不會動的:對特定的commit加上標記，指向位置不會隨著新commit出現更動，用於標記釋出版本或里程碑
 
+十一 　範例一：我在哪裡
+
+1.一個擁有三個commit的repository，此時只有一個預設的master(branch)	
+2.建立一個新的branch叫testing，指向目前所在的commit(指令:git branch testing)
+3.切換到testing branch:head變為指向testing，再切換到該branch指向的commit(指令:git checkout testing)
+訣竅:git checkout -b testing 可一次做完並開新的branch + 切換
+4.用git checkout master 切換到 master 和其對應的commit
+5.在master下進行commit後，由於同一個commit有兩個分支，產生分岔
+
+十二　branch岔開之後?
+
+透過 Merge 合起來， 若目標只是這個 Branch 往後推的幾個 Commit，只要把 Branch 往後推就好，這樣叫 Fast-forward merge。
+無法使用 Fast forward 的狀況，Git 會嘗試用策略去解決並合併分支。（過程簡單、問題較少，但合併次數一多，會讓樹看起來很亂）
+或透過 Rebase 「接上去」（過程複雜，容易衍生問題，但結果較完美）
+※已經 Push 給別人的東西千萬不要用 Rebase！
 
 
 
