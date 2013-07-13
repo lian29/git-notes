@@ -110,7 +110,77 @@ git revert head
 或透過 Rebase 「接上去」（過程複雜，容易衍生問題，但結果較完美）
 ※已經 Push 給別人的東西千萬不要用 Rebase！
 
+十三   範例二:Merge
 
+1.以iss53 修正 Issue 53，但未寫完，
+使用hotfix 解決現在 master 產生的問題，寫好後合併至 master
+指令:git checkout master
+     git merge hotfix
 
+2.切回 master ，把 hotfix 裡的變更合併
 
+因為合併對象是後幾個 Commit，可以透過 Fast Forward 把 Branch 後推解決
+完成後，就能由 git branch -d hotfix 將不需要的 Branch 刪除
+這時iss53 寫好了，需 Merge 回去
+指令:git checkout master
+git merge iss53
 
+但這種 Merge 沒辦法透過 Fast Forward 解決，所幸有共同祖先，可以做 3-way Merge。
+3-way Merge 的實作：比較祖先和合併對象間（C2 與 C4 間和 C2 與 C5 間）的變動，將這些變動合併
+合併結果產生新的 Commit C6，C4 和 C5 是其共同的 parent。
+至此完成分支的合併。
+
+十四　範例三：rebase
+想把 experiment 的變更丟進去 master，但又不想用 Merge 製造額外的分支，解法？
+解：
+指令：git checkout experiment
+git rebase master
+
+把 C3 的變更 「蓋到 master 裡面去」，接下來切回 master，把 experiment 合併好即完成
+
+十五　範例四：複雜一點的rebase
+由於伺服器寫得不太完善，想把client的變更蓋到master上而非伺服器之上
+解：
+指令：git rebase --onto master server client
+檢查 client，由 client 和 server 的共同祖先和其比較看作了哪些變動，
+把那些變更重新在 master 上面作過一遍，剩下的就是 Merge 而已了
+
+十六　conflict!!
+
+1.Git 遇到衝突會停下，將未衝突到的地方給 Staging 起來，把衝突到的地方標示起來。
+2.此時可透過 git status 找出衝突的檔案（unmerged）
+3.打開那些檔案，手動把衝突之處修正，再重新 Commit 就能解決衝突。
+
+十七 branch的其他指令
+
+1.git branch：顯示目前所有的 Branch，會用星號標示目前所在者，
+並以 git branch -v同時顯示各 Branch 所在的 Commit
+2.git branch --merged：顯示已合併到目前 Branch 的其他 Branch，（能把沒用到的 Branch 找出來刪除）
+3.git branch --no-merged：顯示未合併到目前 Branch 的其他 Branch
+
+十八　tag
+
+1.git tag v1.0：把現在的 Commit 加上名為 v1.0 的 Tag
+2.git tag v1.0 abcde：對代碼為 abcde 的 Commit 加上 v1.0 Tag
+3.git tag -d v1.0：刪除名為 v1.0 的 Tag
+4.Git 另有功能較為強大的 Annotated Tags，可以在 Tag 上註記作者資訊和認證機制。
+
+(Push 時，用 git push --tags 才會把 Tag 給一起 Push 上去)
+
+十九  推薦的分支方式
+1.每個branch都採分開處理一項事情
+2.將測試中版本與穩定版本分為不同branch
+3.需長時間才可完成之獨立項目拆成branch
+4.A successful Git branching model 一文中歸納了 Git 用於軟體開發時的分支最佳實踐。
+(有人基於這個概念設計了 git-flow 工具)
+
+二十 我想要乾淨的樹
+
+進行 Branch 切換，或Rebase ，會要求 Working Directory 必須是沒有變動的，但改到一半的東西又無法放棄，何解？
+解：
+使用 Stashing 把變動放到外太空
+
+git stash：把目前的變更（包含 Staging 的部份）放進新的 Stash
+Stash 可以有很多個，會以堆疊的方式儲存（想成放進桶子裡）
+git stash apply：把最新的 Stash 中的變更取出。
+git stash list：檢視目前的 Stash 堆疊。
