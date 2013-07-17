@@ -468,3 +468,4 @@ Pro Git
 Git Ready
 ihower 的 Git 心得文
 
+(本筆記內容來自http://littleb.tc/slides/2012/everyone/git.html 寫給大家的git教學)
