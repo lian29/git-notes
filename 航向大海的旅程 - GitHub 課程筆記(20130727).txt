@@ -1,0 +1,87 @@
+﻿1建立使用者名稱和電子信箱
+
+
+git config --list （查看）
+git config --global user.name "123"
+git config --global user.email "123@yahoo.com.tw"
+
+
+2 建立.git目錄，裡面放的是git repository的檔案
+git init 
+ls -al (可查看所有隱藏檔案）
+3 從GIT專案抓取資料到自己的電腦中
+git clone git://github.com/lian29/git-notes.git
+4查看檔案目前狀態
+git status
+5 改檔案名稱
+git mv
+6  commit和commit修改
+git commit
+git commit --amend(進行修改）
+7.查看版本                        
+git log
+git log  --pretty=oneline
+8.刪除檔案
+git rm
+9 賦予標記
+git tag
+10 建立與刪除分支
+git branch          (查看有哪些分支）
+git branch 123 （建立分支,EX:123)
+git checkout 123(切換到123)
+git branch -D 123 (刪除123)
+11.離開支線,回到主線
+git merge
+12.把專案拉下來
+git pull
+git pull = git fetch +git merge
+git clone https://github.com/git帳號/檔案  下載到自己建立的資料夾
+EX:git clone https://github.com/l2345/notes.git 345
+13.
+git push
+git push origin my-branch
+14. 移除
+git clean
+
+
+15.存取目前狀態
+git stash
+
+
+16.參考資料（電子書）
+1.Pro Git
+2.ihower
+
+
+17.下載git flow(參照 https://github.com/nvie/gitflow）
+git flow init
+git flow feature start my_new_feature
+                     ( finish)
+
+
+18 git hub授權方式
+SSH/HTTPS/GIT
+
+
+19 設定ssh keys
+
+
+20 fork
+把別人的專案拉到自己的帳號裡面修改再PUSH
+21 PULL REQYESTS
+用來通知原創者的專案已被修改,但採用與否由原創者決定
+22 詳細方法請參考github help
+
+
+23 本人所找到的參考網站（中文）：
+http://blog.xuite.net/yctseng/notes/37208602-git-status
+http://blog.longwin.com.tw/2009/05/git-learn-initial-command-2009/
+
+
+
+
+
+
+
+
+（本筆記內容來自2013/7/27於大同大學舉辦的GITHUB課程，並由49951329紀錄而成）
