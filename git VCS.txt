@@ -75,6 +75,6 @@ git push –tags
 預設不會 push tags 資訊
 git push --tags
 
-(本講義內容來自 版本控制系統Git精要http://ihower.tw/git/remote.html)
+(本筆記內容來自 版本控制系統Git精要http://ihower.tw/git/remote.html)
 
 (本檔案標題為git VCS［Version control system = 版本控制系統］）

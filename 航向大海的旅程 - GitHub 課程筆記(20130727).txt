@@ -1,6 +1,4 @@
 ﻿1.建立使用者名稱和電子信箱
-
-
 git config --list （查看）
 git config --global user.name "123"
 git config --global user.email "123@yahoo.com.tw"
@@ -9,6 +7,7 @@ git config --global user.email "123@yahoo.com.tw"
 2.建立.git目錄，裡面放的是git repository的檔案
 git init 
 ls -al (可查看所有隱藏檔案）
+
 3 從GIT專案抓取資料到自己的電腦中
 git clone git://github.com/lian29/git-notes.git
 
@@ -79,8 +78,8 @@ SSH/HTTPS/GIT
 
 21.PULL REQYESTS
 用來通知原創者的專案已被修改,但採用與否由原創者決定
-22 詳細方法請參考github help
 
+22 詳細使用方法可參考github help
 
 23.本人所找到的參考網站（中文）：
 http://blog.xuite.net/yctseng/notes/37208602-git-status
